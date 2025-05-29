@@ -15,31 +15,76 @@ export default function ProfileCard({ perfil }) {
   if (!perfil) return null;
 
   return (
-    <div className="bg-blue-50 rounded-2xl shadow-xl p-8 max-full mx-auto mb-10 flex flex-col md:flex-row gap-12 items-start">
-      {/* Foto à esquerda, topo */}
-      <img
-        src={perfil.foto}
-        alt="Foto de perfil"
-        className="w-36 h-36 rounded-full object-cover border-4 border-blue-400 shadow-md bg-white"
-      />
+    <div className="bg-blue-50 rounded-2xl shadow-xl p-8 max-w-7xl mx-auto mb-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* LADO ESQUERDO - Foto + Conferências */}
+      <div className="flex flex-col items-center md:items-start gap-6">
+        <img
+          src={perfil.foto}
+          alt="Foto de perfil"
+          className="w-36 h-36 rounded-full object-cover border-4 border-blue-400 shadow-md bg-white"
+        />
+        
+        <div className="w-full">
+          <h2 className="text-lg font-semibold text-blue-700 flex items-center gap-2 mb-2">
+            <BriefcaseIcon className="w-5 h-5 text-blue-300" />
+            Conferências que participei
+          </h2>
+          <ul className="space-y-4">
+            <li className="bg-white p-3 rounded-lg shadow text-sm">
+              <a
+                href="https://2016.pythonbrasil.org.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 font-semibold hover:underline"
+              >
+                <img
+                  src="https://i.ibb.co/7d2yHV2s/pythonbrasil.png"
+                  alt="Logo Python Brasil"
+                  className="w-32 mb-2"
+                />
+                Python Brasil 2016
+              </a>
+              <p className="text-gray-600">Outubro 2016 – FLORIANÓPOLIS, SC</p>
+            </li>
 
-      <div className="flex-1 flex flex-col h-full">
-        <h1 className="text-3xl font-bold text-blue-700 flex items-center gap-2 mb-4">
+            <li className="bg-white p-3 rounded-lg shadow text-sm">
+              <a
+                href="https://cerrado.python.org.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-700 font-semibold hover:underline"
+              >
+                <img
+                  src="https://i.ibb.co/XZF4YjVz/pythoncerrado.png"
+                  alt="Logo Python Cerrado"
+                  className="w-32 mb-2"
+                />
+                Python Cerrado
+              </a>
+              <p className="text-gray-600"> Novembro 2016 – BRASÍLIA, DF</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* LADO DIREITO - Conteúdo Principal (2 colunas) */}
+      <div className="md:col-span-2 flex flex-col gap-6">
+        <h1 className="text-3xl font-bold text-blue-700 flex items-center gap-2">
           <UserCircleIcon className="w-7 h-7 text-blue-400" />
           {perfil.nomeCompleto}
         </h1>
 
         {/* Bio */}
-        <div className="mb-4">
+        <div>
           <h2 className="text-lg font-semibold text-blue-700 flex items-center gap-2 mb-1">
             <BriefcaseIcon className="w-5 h-5 text-blue-300" />
             Bio / Resumo Profissional
           </h2>
-          <p className="text-gray-600">{perfil.bio}</p>
+          <p className="indent-4 text-gray-600 text-justify">{perfil.bio}</p>
         </div>
 
         {/* Soft Skills */}
-        <div className="mb-4">
+        <div>
           <h2 className="text-lg font-semibold text-blue-700 flex items-center gap-2 mb-1">
             <ComputerDesktopIcon className="w-5 h-5 text-blue-400" />
             Soft Skills
@@ -49,7 +94,7 @@ export default function ProfileCard({ perfil }) {
 
         {/* Endereço */}
         {(perfil.endereco?.bairro || perfil.endereco?.cidade || perfil.endereco?.estado || perfil.endereco?.cep) && (
-          <div className="mb-4">
+          <div>
             <h2 className="text-lg font-semibold text-blue-700 flex items-center gap-2 mb-1">
               <MapPinIcon className="w-5 h-5 text-blue-300" />
               Endereço
@@ -63,7 +108,7 @@ export default function ProfileCard({ perfil }) {
         )}
 
         {/* Formação Acadêmica */}
-        <div className="mb-4">
+        <div>
           <h2 className="text-lg font-semibold text-blue-700 flex items-center gap-2 mb-1">
             <AcademicCapIcon className="w-6 h-6 text-blue-400" />
             Formação Acadêmica
@@ -81,7 +126,7 @@ export default function ProfileCard({ perfil }) {
         </div>
 
         {/* Contatos e Redes Sociais */}
-        <div className="mt-8 pt-4 border-t flex flex-wrap gap-6 w-full">
+        <div className="pt-4 border-t flex flex-wrap gap-6">
           {perfil.email && (
             <span className="flex items-center gap-1 text-gray-600">
               <EnvelopeIcon className="w-5 h-5 text-blue-300" />
