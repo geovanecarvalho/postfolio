@@ -10,6 +10,18 @@ import {
   BriefcaseIcon,
   ComputerDesktopIcon,
 } from "@heroicons/react/24/outline";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaWhatsapp,
+  FaTelegram,
+  FaEnvelope,
+} from "react-icons/fa";
+
+
+
+
+import Conferencias from "./Conferencias";
 
 export default function ProfileCard({ perfil }) {
   if (!perfil) return null;
@@ -21,49 +33,10 @@ export default function ProfileCard({ perfil }) {
         <img
           src={perfil.foto}
           alt="Foto de perfil"
-          className="w-36 h-36 rounded-full object-cover border-4 border-blue-400 shadow-md bg-white"
+          className="w-36 h-36  rounded-full object-cover border-4 border-blue-400 shadow-md bg-white"
         />
-        
-        <div className="w-full">
-          <h2 className="text-lg font-semibold text-blue-700 flex items-center gap-2 mb-2">
-            <BriefcaseIcon className="w-5 h-5 text-blue-300" />
-            Conferências que participei
-          </h2>
-          <ul className="space-y-4">
-            <li className="bg-white p-3 rounded-lg shadow text-sm">
-              <a
-                href="https://2016.pythonbrasil.org.br/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 font-semibold hover:underline"
-              >
-                <img
-                  src="https://i.ibb.co/7d2yHV2s/pythonbrasil.png"
-                  alt="Logo Python Brasil"
-                  className="w-32 mb-2"
-                />
-                Python Brasil 2016
-              </a>
-              <p className="text-gray-600">Outubro 2016 – FLORIANÓPOLIS, SC</p>
-            </li>
-
-            <li className="bg-white p-3 rounded-lg shadow text-sm">
-              <a
-                href="https://cerrado.python.org.br/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-green-700 font-semibold hover:underline"
-              >
-                <img
-                  src="https://i.ibb.co/XZF4YjVz/pythoncerrado.png"
-                  alt="Logo Python Cerrado"
-                  className="w-32 mb-2"
-                />
-                Python Cerrado
-              </a>
-              <p className="text-gray-600"> Novembro 2016 – BRASÍLIA, DF</p>
-            </li>
-          </ul>
+        <div className="hidden md:block">
+          <Conferencias />
         </div>
       </div>
 
@@ -129,41 +102,46 @@ export default function ProfileCard({ perfil }) {
         <div className="pt-4 border-t flex flex-wrap gap-6">
           {perfil.email && (
             <span className="flex items-center gap-1 text-gray-600">
-              <EnvelopeIcon className="w-5 h-5 text-blue-300" />
+              <FaEnvelope className="w-5 h-5 text-blue-300" />
               {perfil.email}
             </span>
           )}
           {perfil.telefone && (
             <span className="flex items-center gap-1 text-gray-600">
-              <PhoneIcon className="w-5 h-5 text-blue-300" />
+              <PhoneIcon className="w-5 h-5 text-blue-300 " />
               {perfil.telefone}
             </span>
           )}
           {perfil.linkedin && (
             <a href={perfil.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-blue-600 hover:underline">
-              <LinkIcon className="w-5 h-5" /> LinkedIn
+              <FaLinkedin className="w-5 h-5 " /> LinkedIn
             </a>
           )}
           {perfil.github && (
             <a href={perfil.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-gray-800 hover:underline">
-              <LinkIcon className="w-5 h-5" /> GitHub
+              <FaGithub className="w-5 h-5 " /> GitHub
             </a>
           )}
           {perfil.outrosPerfis && (
             <a href={perfil.outrosPerfis} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-pink-600 hover:underline">
-              <LinkIcon className="w-5 h-5" /> Outros Perfis
+              <LinkIcon className="w-5 h-5 " /> Outros Perfis
             </a>
           )}
           {perfil.telegram && (
             <a href={perfil.telegram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-blue-400 hover:underline">
-              <ChatBubbleLeftRightIcon className="w-5 h-5" /> Telegram
+              <FaTelegram className="w-5 h-5 " /> Telegram
             </a>
           )}
           {perfil.whatsapp && (
             <a href={perfil.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-green-600 hover:underline">
-              <DevicePhoneMobileIcon className="w-5 h-5" /> WhatsApp
+              <FaWhatsapp className="w-5 h-5 " /> WhatsApp
             </a>
           )}
+
+          <div className="md:hidden mt-8">
+          <Conferencias/>
+
+          </div>
         </div>
       </div>
     </div>
